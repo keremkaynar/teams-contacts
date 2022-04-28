@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -27,11 +26,15 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Service
 public class ContactServiceImpl implements ContactService {
-	@Autowired
 	private ContactRepository contactRepository;
 
-	@Autowired
 	private TeamRepository teamRepository;
+
+	public ContactServiceImpl(ContactRepository contactRepository, TeamRepository teamRepository) {
+		super();
+		this.contactRepository = contactRepository;
+		this.teamRepository = teamRepository;
+	}
 
 	@Override
 	public Contact createContact(ContactDto contactDto) {

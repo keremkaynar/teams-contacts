@@ -6,7 +6,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -33,13 +32,16 @@ import com.cc.teams.contacts.server.service.ContactService;
 @RequestMapping("/contacts")
 @CrossOrigin(origins = { "http://localhost:4200", "http://localhost:9090" })
 public class ContactController {
-	@Autowired
 	private ContactService contactService;
 
-	@Autowired
 	private ContactDtoAssembler contactDtoAssembler;
 
 	private ModelToDtoConverter modelToDtoConverter = new ModelToDtoConverter();
+
+	public ContactController(ContactService contactService, ContactDtoAssembler contactDtoAssembler) {
+		this.contactService = contactService;
+		this.contactDtoAssembler = contactDtoAssembler;
+	}
 
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<EntityModel<ContactDto>> createContact(@RequestBody ContactDto contactDto) {

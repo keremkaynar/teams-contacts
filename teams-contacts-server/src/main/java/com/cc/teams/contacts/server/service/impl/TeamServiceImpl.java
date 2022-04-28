@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cc.teams.contacts.server.dao.TeamRepository;
@@ -20,8 +19,12 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @Service
 public class TeamServiceImpl implements TeamService {
-	@Autowired
 	private TeamRepository teamRepository;
+
+	public TeamServiceImpl(TeamRepository teamRepository) {
+		super();
+		this.teamRepository = teamRepository;
+	}
 
 	@Override
 	public Team createTeam(TeamDto teamDto) {
