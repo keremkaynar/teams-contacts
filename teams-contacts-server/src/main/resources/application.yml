@@ -1,0 +1,22 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    url: jdbc:h2:./target/db/data-h2.contacts
+    driverClassName: org.h2.Driver
+    username: contacts
+    password: contacts
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+  logging:
+    pattern:
+      console: "%d %-5level %logger : %msg%n"
+    level:
+      org.springframework.web: INFO
+      org.hibernate: INFO
+      com.cc.teams.contacts: INFO

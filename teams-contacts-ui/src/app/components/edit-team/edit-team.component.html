@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="card bg-dark my-5">
+			<div class="card-body">
+				<h2 class="card-title text-center text-white py-3">Edit Team</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+		<div class="form-group form-group-container row">
+			<div class="col-sm-2 col-md-1 col-lg-1">
+				<label for="name" class="col-form-label">Name: </label>
+			</div>
+			<div class="col-sm-6 col-md-3 col-lg-3">
+				<input id="name" type="text" class="form-control"
+					placeholder="Enter team name" formControlName="name">
+			</div>
+			<div *ngIf="name!.invalid && (name!.dirty || name!.touched)"
+				class="alert alert-danger">
+				<div *ngIf="name!.errors?.['required']">Name is required.</div>
+			</div>
+		</div>
+
+		<div class="demo-button-container">
+			<button type="submit" [disabled]="!teamForm.valid">Save</button>
+		</div>
+	</form>
+</div>

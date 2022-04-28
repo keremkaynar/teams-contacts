@@ -1,0 +1,85 @@
+<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12">
+		<div class="card bg-dark my-5">
+			<div class="card-body">
+				<h2 class="card-title text-center text-white py-3">Edit Contact</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+		<div class="form-group form-group-container row">
+			<div class="col-sm-4 col-md-2 col-lg-2">
+				<label for="firstName" class="col-form-label">First Name: </label>
+			</div>
+			<div class="col-sm-8 col-md-4 col-lg-4">
+				<input id="firstName" type="text" class="form-control"
+					formControlName="firstName">
+			</div>
+			<div
+				*ngIf="firstName!.invalid && (firstName!.dirty || firstName!.touched)"
+				class="alert alert-danger">
+				<div *ngIf="firstName!.errors?.['required']">First name is
+					required.</div>
+				<div *ngIf="firstName!.errors?.['maxlength']">First name can
+					be at most 50 characters long.</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-container row">
+			<div class="col-sm-4 col-md-2 col-lg-2">
+				<label for="lastName" class="col-form-label">Last Name: </label>
+			</div>
+			<div class="col-sm-8 col-md-4 col-lg-4">
+				<input id="lastName" type="text" class="form-control"
+					formControlName="lastName">
+			</div>
+			<div
+				*ngIf="lastName!.invalid && (lastName!.dirty || lastName!.touched)"
+				class="alert alert-danger">
+				<div *ngIf="lastName!.errors?.['required']">Last name is
+					required.</div>
+				<div *ngIf="lastName!.errors?.['maxlength']">Last name can be
+					at most 50 characters long.</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-container row">
+			<div class="col-sm-4 col-md-2 col-lg-2">
+				<label for="mailAddress" class="col-form-label">Mail
+					Address: </label>
+			</div>
+			<div class="col-sm-8 col-md-4 col-lg-4">
+				<input id="mailAddress" type="text" class="form-control"
+					formControlName="mailAddress">
+			</div>
+			<div
+				*ngIf="mailAddress!.invalid && (mailAddress!.dirty || mailAddress!.touched)"
+				class="alert alert-danger">
+				<div *ngIf="mailAddress!.errors?.['email']">A valid email
+					address is required.</div>
+			</div>
+		</div>
+
+		<div class="form-group form-group-container row">
+			<div class="col-sm-4 col-md-2 col-lg-2">
+				<label for="teamId" class="col-form-label">Team Id: </label>
+			</div>
+			<div class="col-sm-8 col-md-4 col-lg-4">
+				<input id="teamId" type="text" class="form-control"
+					formControlName="teamId" [readonly]="!contactId">
+			</div>
+			<div
+				*ngIf="formTeamId!.invalid && (formTeamId!.dirty || formTeamId!.touched)"
+				class="alert alert-danger">
+				<div *ngIf="formTeamId!.errors?.['required']">A valid team ID
+					is required.</div>
+			</div>
+		</div>
+
+		<div class="demo-button-container">
+			<button type="submit" [disabled]="!contactForm.valid">Save</button>
+		</div>
+	</form>
+</div>

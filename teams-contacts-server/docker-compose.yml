@@ -1,0 +1,13 @@
+version: '3'
+
+volumes:
+  db_data:
+
+services:
+  contacts:
+    image: contacts:latest
+    ports:
+      - 9090:9090
+    user: contacts:contacts
+    volumes:
+      - db_data:/target/db:rw
