@@ -17,4 +17,4 @@ Then change into *teams-contacts-server/* project directory and run the followin
 docker compose up
 ```
 
-After that, you can conenct to *localhost:9090* in your browser and interact with the web application.
+After that, you can connect to *localhost:9090* in your browser and interact with the web application.
